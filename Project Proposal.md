@@ -1,1 +1,6 @@
-EEB313 Project Proposal - Malaria Modelling 
+# EEB313 Project Proposal - Malaria Modelling 
+
+One of the oldest diseases affecting humankind, malaria is one of the severe challenges… sub-saharan africa… Caused by the protozoan Plasmodium spp., as many as triple the amount of deaths from armed conflicts… Efforts at reducing deaths include measures such as insecticide treated bed nets, artemisinin therapies, and indoor insecticide spraying. We are investigating… 
+
+Malaria margaret philips…
+
