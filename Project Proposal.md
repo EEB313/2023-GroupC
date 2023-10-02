@@ -30,6 +30,7 @@ Title: (clear and informative)
       - what type of model will we use?
    
  There are MANY types of models we can use:
+ 
  **Compartmental** --> divides population into sub-compartments
 - SIR (susceptible, infected, recovered) or SEIR (susceptible, exposed, infected, recovered) simulate malaria spread through population
 
