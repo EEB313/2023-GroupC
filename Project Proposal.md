@@ -43,3 +43,17 @@ Title: (clear and informative)
 
 **Age-structured models** (commonly used epidemiology model) --> model age-specific susceptibility/immunity to malaria infection, survival rate
 THERE ARE MANY MORE MODELS, HOWEVER THESE ARE SOME THAT I HAVE SEEN IMPLEMENTED IN RESEARCH PAPERS REGARDING MALARIA INCIDENCE
+
+
+Malaria is a deadly mosquito-borne herpesvirus caused by Plasmodium spp. As a vector borne disease, malaria is primarily transmitted by mosquitoes (Anopheles), whose bite allows the entry of Plasmodium into the bloodstream. Once in a human host, malaria presents as a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications. In many cases, malaria can lead to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities. Unfortunately, children under the age of 5 from sub-Saharan Africa represent a disproportionate amount of these cases. 
+Interestingly, patient outcomes vary depending on the species of Plasmodium causing the infection. In our study, we aim to investigate and model the incidence rate, severity, and outcomes of malaria across different African regions as a product of Plasmodium species. Further, we relate these differences to regional characteristics such as temperature, rainfall, and proximity to water bodies, in an effort to better explain case count in specific provinces. We expect to see a positive correlation between malaria deaths and rainfall/temperature. As such, we predict that temperature-sensitive Plasmodium falciparum, the most deadly malaria parasite, will primarily affect…
+
+
+Phillips MA, Burrows JN, Manyando C, van Huijsduijnen RH, Van Voorhis WC, Wells TNC. Malaria. (2017). Nat Rev Dis Primers. 3:17050. 10.1038/nrdp.2017.50.
+https://data.unicef.org/topic/child-health/malaria/#:~:text=Nearly%20every%20minute%2C%20a%20child%20under%20five%20dies%20of%20malaria,to%20619%2C000%20deaths%20in%20total.
+Carvalho-Tavares, J. (2013). Malaria. Morgan & Claypool. 1615046364, 9781615046362
+
+
+
+
+
