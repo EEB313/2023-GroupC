@@ -28,3 +28,17 @@ Title: (clear and informative)
   - what specific question are we answering with this model? (What is the model itself we will be using)
   - what variables are we measuring? How will we represent/track these variables?
       - what type of model will we use?
+   
+ There are MANY types of models we can use:
+ **Compartmental** --> divides population into sub-compartments
+- SIR (susceptible, infected, recovered) or SEIR (susceptible, exposed, infected, recovered) simulate malaria spread through population
+
+**Differential Equation**(aka Sam carries with thiccc math brain) --> dynamics of malaria transmission
+- requires variables that measure transmission rate, recovery rate, and population demographics
+- not sure how viable this is, the data on the website doesn't have these stats
+
+**Regression Analysis** --> used to identify factors relating to malaria incidence (this might be worth looking into)
+- requires variables that describe climate, population density, and socio-economic factors
+
+**Age-structured models** (commonly used epidemiology model) --> model age-specific susceptibility/immunity to malaria infection, survival rate
+THERE ARE MANY MORE MODELS, HOWEVER THESE ARE SOME THAT I HAVE SEEN IMPLEMENTED IN RESEARCH PAPERS REGARDING MALARIA INCIDENCE
