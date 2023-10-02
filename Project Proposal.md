@@ -4,3 +4,27 @@ One of the oldest diseases affecting humankind, malaria is one of the severe cha
 
 Malaria margaret philips…
 
+Title: (clear and informative)
+- Title for the project (clear title that frames the work we are trying to do)
+ 
+  Introduction:
+  - provide background context as to what the problem is and why it is essential we are doing the research
+  - including statistics here about the problem is good
+ 
+  Objective:
+  **What are we researching?**
+  - what are the goals of this modeling project? We need to narrow this down...
+    - are we testing for virulence between different types of parasites? I.e. P. falciparum (most common in fatal cases), P. vivax, P. ovale,
+      P. malariae, P. knowlesi (not relevant, found in Asia + infects macaques, animal --> human dubbed zoonotic malaria)
+    - P. falciparum has already been proven to be the most deadly parasite bc it induces extreme hemolysis of RBCs at all levels
+      (Wtf does this mean: red blood cells are recognized as infected (high levels of parasites in blood), so the body destroys them
+      --> this results in severe anemia as the body destroys too many rbcs.
+    - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4800101/#:~:text=Unlike%20other%20Plasmodium%20species%2C%20P,falciparum%20infected%20children%20is%20high.
+    - P. falciparum is also the most commonly found parasite in African countries (south of the sahara)
+    - https://www.who.int/news-room/fact-sheets/detail/malaria#:~:text=P.%20falciparum%20is%20the%20deadliest,outside%20of%20sub%2DSaharan%20Africa.
+    - If we aren't testing for the virulence, are we testing for the distribution of different malaria parasites?? (WE GOTTA NARROW THIS DOWN)
+
+   **MODELLING OBJECTIVES**
+  - what specific question are we answering with this model? (What is the model itself we will be using)
+  - what variables are we measuring? How will we represent/track these variables?
+      - what type of model will we use?
