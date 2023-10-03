@@ -37,7 +37,7 @@ Ross-Macdonald model to verify possible discrenpsies, and where certain models a
 or these may be advantageous on case-by-case conditions). Should our model prove to accurately ressemble real-life data, it may also be 
 of interest to use it for predictive purposes, to enable more insightful approaches to combatting malaria. 
 
-# Citations
+## Citations
 
 1. Phillips MA, Burrows JN, Manyando C, van Huijsduijnen RH, Van Voorhis WC, Wells TNC. Malaria. (2017). Nat Rev Dis Primers. 3:17050. 10.1038/nrdp.2017.50.
 2. Tavares, Juliana Carvalho. Malaria. *Morgan*; Claypool, 2013. 
