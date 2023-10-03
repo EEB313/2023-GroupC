@@ -6,7 +6,7 @@ Malaria is a deadly mosquito-borne herpesvirus caused by _Plasmodium spp_ [1,2].
 
 ## Model Inspiration
 
-For the first part of our project, we are interested in examining the predictive power of the Ross-Macdonald model for malaria transmission. This model is derived from two equations, one of which observes human infections, and the other vector infections (which in this context is mosquitoes) [5,6]. More specifically, this model focuses on the susceptible population ($S$), and the infected population ($I$), and briefly considers the recovered population ($R$). Here is a quick summary of the different variables used within the model:
+For the first part of our project, we are interested in examining the predictive power of the Ross-Macdonald model for malaria transmission. Specifically, we want to apply this model to DRC malaria data. This model is derived from two equations, one of which observes human infections, and the other vector infections (which in this context is mosquitoes) [5,6]. More specifically, this model focuses on the susceptible population ($S$), and the infected population ($I$), and briefly considers the recovered population ($R$). Here is a quick summary of the different variables used within the model:
 * $a$: mosquito biting rate,
 * $b$: transmission probability from an infectious mosquito to a susceptible human per bite,
 * $c$: transmission probability from an infectious human to a susceptible mosquito per bite,
