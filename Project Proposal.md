@@ -73,7 +73,7 @@ For the first part of our project, we are interested in examining the predictive
 
 Furthermore, the model itself is as follows,
 
-$$\frac{dI_h}{dt} = ab \frac{I_v}{H}S_h - \gamma I_h \ \ \ \ \ \text{and } \frac{dI_v}{dt} = ab \frac{I_h}{H}S_v - \mu I_v,$$
+$$\frac{dI_h}{dt} = ab \frac{I_v}{H}S_h - \gamma I_h \ \ \ \ \ \text{and } \ \ \ \ \frac{dI_v}{dt} = ab \frac{I_h}{H}S_v - \mu I_v,$$
 
 where $S_h = H - I_h, S_v = V - I_v,$ and $R_0 = \sqrt{\frac{a^2 bcm}{\gamma\mu}}$. However, the Ross-Macdonald model considers many of the parameters to be fixed (e.g., $a$, $b$, and $c$), which is rarely the case in actual populations. Moreover, interpreting these values as functions of time might provide greater accuracy in a malaria model. The number of mosquito bites on humans per mosquito per month is influenced by both human and environment-driven factors. Consider migration and resource allocation to combat mosquitoes for human factors, and precipitation and the temperature for environmental factors [7,8,9]. It would thus be of interest for $a(t)$ to take these values into its output. Moreover, $b$ may be impacted by the number of infectious mosquitoes, the transmibility of the malaria strain, and the opportunities for infectious mosquitoes to feed on succeptible humans. Note that humans can be feeded on several times a day, and so this factor is not limiting. <what might impact transmission H to V per bite>. As such, in the second part of our project we will be exploring whether and how incorporating the aforementioned variables impact the predictive value of the Ross-Macdonald model. Findings from our research have the potential to … 
 
