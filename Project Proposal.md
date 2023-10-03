@@ -26,7 +26,7 @@ the parameters to be fixed (e.g., $a$, $b$, and $c$), which is rarely the case i
 as functions of time might provide greater accuracy in a malaria model. The number of mosquito bites on humans per mosquito per month is 
 influenced by both human and environment-driven factors. Consider migration and resource allocation to combat mosquitoes for human factors, 
 and precipitation and the temperature for environmental factors [7,8,9]. It would thus be of interest for $a(t)$ to take these values into 
-its output. Moreover, $b$ may be impacted by the number of infectious mosquitoe, and the opportunities for infectious mosquitoes to feed 
+its output. Moreover, $b$ may be impacted by the number of infectious mosquitoes, and the opportunities for infectious mosquitoes to feed 
 on succeptible humans. Note that humans can be feeded on several times a day, but that mosquitoes may only feed a finite number of times 
 each day. This can be perceived as there being no particular lack or resources, but that one given mosquito can only infect a finite number 
 of individuals in a day. Moreover, $c$ may be impacted by quarantining procedures and the virulence of the virus. As such, in the second 
