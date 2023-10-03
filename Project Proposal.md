@@ -2,11 +2,11 @@
 
 ## Leading Question
 
-Malaria is a deadly mosquito-borne herpesvirus caused by _Plasmodium spp_ [1,2]. As a vector borne disease, malaria is primarily transmitted by mosquitoes (_Anopheles_), whose bite allows the entry of _Plasmodium_ into the bloodstream. Once in a human host, malaria presents as a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications [1]. In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities [3]. Unfortunately, children under the age of 5 were the most vulnerable demographic, comprising a total of 77% of malaria related deaths [3]. The Democratic Republic of the Congo (DRC) is among the hardest hit countries, representing 12% of all global cases in 2021 [4]. Consequently, malaria research is a field of global interest. Besides research into the physiological, immunological, and genetic causes and consequences of malaria, many researchers focus on mathematical modelling as a measure to explain infection/death rates [5]. Such models inform institutional decisions, especially when environmental, social, economic, and migration-related variables are included [5].
+Malaria is a deadly mosquito-borne herpesvirus caused by _Plasmodium spp_ [1,2]. As a vector-borne disease, malaria is primarily transmitted by mosquitoes (_Anopheles_), whose bite allows the entry of _Plasmodium_ into the bloodstream. Once in a human host, malaria presents as a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications [1]. In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities [3]. Unfortunately, children under the age of 5 were the most vulnerable demographic, comprising a total of 77% of malaria-related deaths [3]. The Democratic Republic of the Congo (DRC) is among the hardest-hit countries, representing 12% of all global cases in 2021 [4]. Consequently, malaria research is a field of global interest. Besides research into the physiological, immunological, and genetic causes and consequences of malaria, many researchers focus on mathematical modeling as a measure to explain infection/death rates [5]. Such models inform institutional decisions, especially when environmental, social, economic, and migration-related variables are included [5].
 
 ## Model Inspiration
 
-For the first part of our project, we are interested in examining the predictive power of the Ross-Macdonald model for malaria transmission. This model is derived from two equations, one of which observes human infections, and the other vector infections (which in this context is mosquitoes) [5,6]. More specifically, this model focuses on the susceptible population ($S$), the infected population ($I$), and briefly considers the recovered population ($R$). Here is a quick summary of the different variables used within the model:
+For the first part of our project, we are interested in examining the predictive power of the Ross-Macdonald model for malaria transmission. This model is derived from two equations, one of which observes human infections, and the other vector infections (which in this context is mosquitoes) [5,6]. More specifically, this model focuses on the susceptible population ($S$), and the infected population ($I$), and briefly considers the recovered population ($R$). Here is a quick summary of the different variables used within the model:
 * $a$: mosquito biting rate,
 * $b$: transmission probability from an infectious mosquito to a susceptible human per bite,
 * $c$: transmission probability from an infectious human to a susceptible mosquito per bite,
@@ -27,14 +27,14 @@ as functions of time might provide greater accuracy in a malaria model. The numb
 influenced by both human and environment-driven factors. Consider migration and resource allocation to combat mosquitoes for human factors, 
 and precipitation and the temperature for environmental factors [7,8,9]. It would thus be of interest for $a(t)$ to take these values into 
 its output. Moreover, $b$ may be impacted by the number of infectious mosquitoes, and the opportunities for infectious mosquitoes to feed 
-on succeptible humans. Note that humans can be feeded on several times a day, but that mosquitoes may only feed a finite number of times 
-each day. This can be perceived as there being no particular lack or resources, but that one given mosquito can only infect a finite number 
+on susceptible humans. Note that humans can be bit many times per day, however, mosquitoes may only feed a finite number of times 
+each day. This can be perceived as there being no particular lack of resources, but that one given mosquito can only infect a finite number 
 of individuals in a day. Moreover, $c$ may be impacted by quarantining procedures and the virulence of the virus. As such, in the second 
-part of our project we will be exploring whether and how incorporating the aforementioned variables impact the predictive value of the 
+part of our project, we will be exploring whether and how incorporating the aforementioned variables impacts the predictive value of the 
 Ross-Macdonald model. Findings from our research have the potential to present an improved model that may better depict real-life malaria 
 cases and perhaps even infer interactions between mechanisms. It will also be of interest to compare our model against the standard 
-Ross-Macdonald model to verify possible discrenpsies, and where certain models are more advantageous (one may be overwhelmingly better, 
-or these may be advantageous on case-by-case conditions). Should our model prove to accurately ressemble real-life data, it may also be 
+Ross-Macdonald model to verify possible discrepancies, and where certain models are more advantageous (one may be overwhelmingly better, 
+or these may be advantageous on case-by-case conditions). Should our model prove to accurately resemble real-life data, it may also be 
 of interest to use it for predictive purposes, to enable more insightful approaches to combatting malaria. 
 
 ## Citations
