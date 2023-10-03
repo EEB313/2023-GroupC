@@ -2,7 +2,7 @@
 
 ## Leading Question
 
-Malaria is a deadly mosquito-borne herpesvirus caused by Plasmodium spp [1,2]. As a vector borne disease, malaria is primarily transmitted by mosquitoes (Anopheles), whose bite allows the entry of Plasmodium into the bloodstream. Once in a human host, malaria presents as a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications [1]. In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities [3]. Unfortunately, children under the age of 5 were the most vulnerable demographic, comprising a total of 77% of malaria related deaths [3]. The Democratic Republic of the Congo (DRC) is among the hardest hit countries, representing 12% of all global cases in 2021 [4]. Consequently, malaria research is a field of global interest. Besides research into the physiological, immunological, and genetic causes and consequences of malaria, many researchers focus on mathematical modelling as a measure to explain infection/death rates [5]. Such models inform institutional decisions, especially when variables include environmental, social, economic, and migration [5].
+Malaria is a deadly mosquito-borne herpesvirus caused by _Plasmodium spp_ [1,2]. As a vector borne disease, malaria is primarily transmitted by mosquitoes (Anopheles), whose bite allows the entry of Plasmodium into the bloodstream. Once in a human host, malaria presents as a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications [1]. In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities [3]. Unfortunately, children under the age of 5 were the most vulnerable demographic, comprising a total of 77% of malaria related deaths [3]. The Democratic Republic of the Congo (DRC) is among the hardest hit countries, representing 12% of all global cases in 2021 [4]. Consequently, malaria research is a field of global interest. Besides research into the physiological, immunological, and genetic causes and consequences of malaria, many researchers focus on mathematical modelling as a measure to explain infection/death rates [5]. Such models inform institutional decisions, especially when variables include environmental, social, economic, and migration [5].
 
 ## Model Inspiration
 
@@ -40,7 +40,7 @@ of interest to use it for predictive purposes, to enable more insightful approac
 ## Citations
 
 1. Phillips MA, Burrows JN, Manyando C, van Huijsduijnen RH, Van Voorhis WC, Wells TNC. Malaria. (2017). Nat Rev Dis Primers. 3:17050. 10.1038/nrdp.2017.50.
-2. Tavares, Juliana Carvalho. Malaria. *Morgan*; Claypool, 2013. 
+2. Tavares, Juliana Carvalho. Malaria. _Morgan_; Claypool, 2013. 
 3.  “Malaria in Africa.” UNICEF, 5 May 2023, data.unicef.org/topic/child-health/malaria/#:~:text=Nearly%20every%20minute%2C%20a%20child%20under%20five%20dies%20of%20malaria,to%20619%2C000%20deaths%20in%20total.
 4.  “Malaria.” World Health Organization, World Health Organization, 2021, www.who.int/news-room/fact-sheets/detail/malaria.
 5.  Mandal, Sandip, et al. “Mathematical models of malaria - A Review.” Malaria Journal, vol. 10, no. 1, 2011, https://doi.org/10.1186/1475-2875-10-202.
