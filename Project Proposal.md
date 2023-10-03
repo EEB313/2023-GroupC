@@ -1,6 +1,10 @@
 # EEB313 Project Proposal - DRC Malaria Modelling 
 
+## Leading Question
+
 Malaria is a deadly mosquito-borne herpesvirus caused by Plasmodium spp [1,2]. As a vector borne disease, malaria is primarily transmitted by mosquitoes (Anopheles), whose bite allows the entry of Plasmodium into the bloodstream. Once in a human host, malaria presents as a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications [1]. In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities [3]. Unfortunately, children under the age of 5 were the most vulnerable demographic, comprising a total of 77% of malaria related deaths [3]. The Democratic Republic of the Congo (DRC) is among the hardest hit countries, representing 12% of all global cases in 2021 [4]. Consequently, malaria research is a field of global interest. Besides research into the physiological, immunological, and genetic causes and consequences of malaria, many researchers focus on mathematical modelling as a measure to explain infection/death rates [5]. Such models inform institutional decisions, especially when variables include environmental, social, economic, and migration [5].
+
+## Model Inspiration
 
 For the first part of our project, we are interested in examining the predictive power of the Ross-Macdonald model for malaria transmission. This model is derived from two equations, one of which observes human infections, and the other vector infections (which in this context is mosquitoes) [5,6]. More specifically, this model focuses on the susceptible populations ($S$), the infected population ($I$), and briefly considers the recovered population ($R$). Here is a quick summary of the different variables used within the model:
 * $a$: mosquito biting rate,
