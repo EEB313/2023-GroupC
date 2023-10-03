@@ -81,4 +81,5 @@ where $S_h = H - I_h, S_v = V - I_v,$ and $R_0 = \sqrt{\frac{a^2 bcm}{\gamma\mu}
 
 1. Phillips MA, Burrows JN, Manyando C, van Huijsduijnen RH, Van Voorhis WC, Wells TNC. Malaria. (2017). Nat Rev Dis Primers. 3:17050. 10.1038/nrdp.2017.50.
 2. UNICEF (2023). https://data.unicef.org/topic/child-health/malaria/#:~:text=Nearly%20every%20minute%2C%20a%20child%20under%20five%20dies%20of%20malaria,to%20619%2C000%20deaths%20in%20total.
-
+[3].
+[4]. 
