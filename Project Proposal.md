@@ -81,7 +81,7 @@ where $S_h = H - I_h, S_v = V - I_v,$ and $R_0 = \sqrt{\frac{a^2 bcm}{\gamma\mu}
 
 1. Phillips MA, Burrows JN, Manyando C, van Huijsduijnen RH, Van Voorhis WC, Wells TNC. Malaria. (2017). Nat Rev Dis Primers. 3:17050. 10.1038/nrdp.2017.50.
 2.  “Malaria in Africa.” UNICEF, 5 May 2023, data.unicef.org/topic/child-health/malaria/#:~:text=Nearly%20every%20minute%2C%20a%20child%20under%20five%20dies%20of%20malaria,to%20619%2C000%20deaths%20in%20total.
-3.  Tavares, Juliana Carvalho. Malaria. Morgan &amp; Claypool, 2013.
+3.  Tavares, Juliana Carvalho. Malaria. *Morgan*; Claypool, 2013. 
 4.  “Malaria.” World Health Organization, World Health Organization, 2021, www.who.int/news-room/fact-sheets/detail/malaria.
 5.  Mandal, Sandip, et al. “Mathematical models of malaria - A Review.” Malaria Journal, vol. 10, no. 1, 2011, https://doi.org/10.1186/1475-2875-10-202.
 6.  Jin, Xiulei, et al. “Mathematical analysis of the Ross–MacDonald model with quarantine.” Bulletin of Mathematical Biology, vol. 82, no. 4, 2020, https://doi.org/10.1007/s11538-020-00723-0. 
