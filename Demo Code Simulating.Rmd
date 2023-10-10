@@ -73,7 +73,7 @@ $$
 It should be considered that $\Delta t$ may not be necessarily fixed as 1, rather, for the intent of this project it is of interest to infer population changes a time increment of 1. Currently, we want to track time as months.  
 
 These equations are great, now we may focus on creating data. 
-To ensure our methods are correct, we will first forgo implementing stochastic effects. 
+To ensure our methods are correct, we will first forego implementing stochastic effects. 
 
 ```{r}
 rossMacdonaldData <- function(a, b, c,
