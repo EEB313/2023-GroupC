@@ -1,0 +1,108 @@
+---
+title: "EEB313 Proposal Demo"
+author: "Group C"
+output: 
+header-includes:
+   - \usepackage{amsmath}
+pdf_document: default
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+
+
+
+Assuming a fixed human and vector population, the Ross-Macdonald model is defined by two equations, namely
+
+$$
+\begin{align}
+\frac{dI_h}{dt} &= ab\frac{I_v}{H}(H-I_h) - \gamma I_h & (1)\\
+\frac{dI_v}{dt} &= ac\frac{I_h}{H}(V - I_v) - \mu I_v  & (2)
+\end{align}
+$$
+
+Note that (1) computes the rate of change of infectious humans over time, and that (2) computes the rate of change of infectious vectors over time. It is of interest to use these equations to infer how these quantities may grow over time.
+
+Using the formal definition of derivative, we may derive the following:
+
+$$
+\begin{align}
+\frac{dI_h}{dt}(t) &= \frac{I_h(t + \Delta t) - I_h(t)}{\Delta t} & (3)\\
+\frac{dI_v}{dt}(t) &= \frac{I_v(t + \Delta t) - I_v(t)}{\Delta t}  & (4)
+\end{align}
+$$
+Using (1) & (3),
+
+$$
+\begin{align}
+ab\frac{I_v(t)}{H}(H-I_h(t)) - \gamma I_h (t) 
+  &= \frac{dI_h}{dt}(t) &\ \ \ \ \ \ \text{By (1)} \\
+  &= \frac{I_h(t + \Delta t) - I_h(t)}{\Delta t} &\ \ \ \ \ \ \text{By (3)} \\
+\Delta t \left(ab\frac{I_v(t)}{H}(H-I_h(t)) - \gamma I_h (t) \right) 
+  &= I_h(t + \Delta t) - I_h(t) &\ \ \ \ \ \ \text{Multiplying by } \Delta t. \\
+\Delta t \left(ab\frac{I_v(t)}{H}(H-I_h(t)) - \gamma I_h (t) \right) + I_h(t) 
+  &= I_h(t + \Delta t) &\ \ \ \ \ \ \text{Adding } I_h(t). \\
+\left(ab\frac{I_v(t)}{H}(H-I_h(t)) - \gamma I_h (t) \right) + I_h(t) 
+  &= I_h(t + 1) &\ \ \ \ \ \ \text{Fixing } \Delta t = 1. \\
+ab \cdot I_v(t) + I_h(t) \left(1 - ab \frac{I_v(t)}{H} - \gamma\right)
+  &= I_h(t + 1) &\ \ \ \ \ \ \text{Distributing and Regrouping.} \\
+\end{align}
+$$
+and, using (2) & (4)
+
+$$
+\begin{align}
+ac\frac{I_h(t)}{H}(V - I_v(t)) - \mu I_v(t) 
+  &= \frac{dI_v}{dt}(t) &\ \ \ \ \ \ \text{By (2)} \\
+  &= \frac{I_v(t + \Delta t) - I_v(t)}{\Delta t} &\ \ \ \ \ \ \text{By (4)} \\
+\Delta t \left(ac\frac{I_h(t)}{H}(V - I_v(t)) - \mu I_v(t) \right) 
+  &= I_v(t + \Delta t) - I_v(t) &\ \ \ \ \ \ \text{Multiplying by } \Delta t. \\
+\Delta t \left(ac\frac{I_h(t)}{H}(V - I_v(t)) - \mu I_v(t)\right) + I_v(t) 
+  &= I_v(t + \Delta t) &\ \ \ \ \ \ \text{Adding } I_h(t). \\
+\left(ac\frac{I_h(t)}{H}(V - I_v(t)) - \mu I_v(t)\right) + I_v(t) 
+  &= I_v(t + 1) &\ \ \ \ \ \ \text{Fixing } \Delta t = 1. \\
+acm \cdot I_h(t) + I_v(t) \left(1 - ac \frac{I_h(t)}{H} - \mu\right)
+  &= I_v(t + 1) &\ \ \ \ \ \ \text{Distributing and Regrouping.} \\
+\end{align}
+$$
+
+
+It should be considered that $\Delta t$ may not be necessarily fixed as 1, rather, for the intent of this project it is of interest to infer population changes a time increment of 1. Currently, we want to track time as months.  
+
+These equations are great, now we may focus on creating data. 
+To ensure our methods are correct, we will first forgo implementing stochastic effects. 
+
+```{r}
+rossMacdonaldData <- function(a, b, c,
+                              H, V, Ih, Iv,
+                              mu, gamma,
+                              time = 120){
+  Ih_pop <- c(Ih)
+  Iv_pop <- c(Iv)
+  t <- c(1)
+  for (i in (1:time)){
+    Ih_pop[i + 1] <- a*b*Iv_pop[i] + Ih_pop[i]*(1 - a*b*Iv_pop[i]/H - gamma)
+    Iv_pop[i + 1] <- a*c*Ih_pop[i] + Iv_pop[i]*(1 - a*c*Ih_pop[i]/H - mu)
+    t[i + 1] <- i
+  }
+  return(data.frame(t, Ih_pop, Iv_pop))
+}
+
+#rossMacdonaldData(a = 2, b=0.5, c=0.5, H = 500, V = 200, Ih = 16, Iv = 103, mu = 0.1, gamma = 0.2)
+```
+
+```{r}
+rossMacdonaldData(a = 2, b=0.2, c=0.1, H = 10000, V = 200, Ih = 16, Iv = 103, mu = 0.1, gamma = 0.2) %>% 
+  ggplot(aes(x = t, y = Ih_pop)) +
+  geom_point()
+
+rossMacdonaldData(a = 2, b=0.2, c=0.1, H = 10000, V = 200, Ih = 16, Iv = 103, mu = 0.1, gamma = 0.2) %>% 
+  ggplot(aes(x = t, y = Iv_pop)) +
+  geom_point()
+```
+
+
+
