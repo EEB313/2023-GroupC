@@ -18,6 +18,7 @@ library(patchwork)
 ```{r, include=FALSE}
 dirLocation <- here("Project")
 ```
+In this research project we are interested in exaiming the Ross-Macdonald model, consiting of 7 paramters, which are used to describe the dynamics of Malaria transsmission. In our work, we would like to determine wheather all of the seven Ross-Macdonald model paramaters are equally necessary to reliably fit our simulated data. We are also interested in optimizing the performance of our code, so that the fitting calculations can be more quickly derived. Our findings could clarify the importance of each parameter in the Ross-Macdonald model. Additionally, our findings may enhance the computational efficiency for subsequent and similar research. 
 
 Mathematical models are descriptions of biological processes which describe states under depicted assumptions and can help for an intuitive understanding for how those processes may unfold in nature [@ZHANG2023]. Moreover, they can be used to
 
