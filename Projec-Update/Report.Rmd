@@ -276,6 +276,86 @@ It should be noted that during the creation of data, it was briefly conjectured 
 
 # Likelihood
 
+As stated previously, the intent of this project is to fit simulated data using some finite subset of parameters to fit the data. Using likelihood assumes that data are normally distributed and there are equal variance among data points. The pseduo code below can be used to solve the differential equation for a fixed set of parameter values and some given range for parameters of interest. Using this information, the code then returns the parameters which optimize for likelihood. 
+
+```{r, eval = FALSE}
+ihInt <- <number of initial infected humans>
+ivInt <- <number of initial infected vectors>
+times <- seq(1, 365*m)
+state <- c(Ih = ih, Iv = iv)
+
+params <- expand.grid(a = <constant> or <seq(start, end, steps)>,
+                      b = <constant> or <seq(start, end, steps)>,
+                      c = <constant> or <seq(start, end, steps)>,
+                      H = <constant> or <seq(start, end, steps)>,
+                      V = <constant> or <seq(start, end, steps)>,
+                      mu = <constant> or <seq(start, end, steps)>,
+                      gamma = <constant> or <seq(start, end, steps)>,
+                      kappa = <seq(start, end, steps)>,
+                      p = <seq(start, end, steps)>
+                     )
+
+return_LL_at_specific_combo_params <- function(params_to_use, data){
+  
+  reporting_times <- data$time
+  
+  out <- 
+    as.data.frame(ode(state, times, rossMacOde, params_to_use)) %>%
+    subset(time %in% reporting_times) 
+  
+  LLh <- c()
+  LLv <- c()
+  
+  for (i in 1:length(reporting_times)){
+    LLh[i] <- dbinom(data$Ih[i], size = round(params_to_use$kappa*out$I[i]), 
+                    prob = params_to_use$p)
+    LLv[i] <- dbinom(data$Iv[i], size = round(params_to_use$kappa*out$I[i]), 
+                    prob = params_to_use$p)
+  }
+  
+  LogLik <- sum((log(LLh) + log(LLv))/2)
+  
+  return(data.frame(params_to_use, LogLik = LogLik))
+}
+
+LogLikihoods <- NULL
+outALL <- NULL
+
+for (i in 1:nrow(params)){
+  LogLikihoods <- rbind(LogLikihoods, 
+                        return_LL_at_specific_combo_params(params[i,], data)
+                        )
+  outALL[[i]] <- data.frame(ode(state, times, rossMacOde, params[i,1:7]), index = i)
+}
+
+MLE <- LogLikihoods %>% subset(is.finite(LogLik)) %>% 
+  subset(LogLik == max(LogLik)); MLE
+```
+
+Noticeably, there are two distinct sets of data (human and vector) which must be fitted using likelihood. It will be interesting to observe how likelihood determines parameters (i.e., the existence of any biases, preference of variables in both equations), given the number of parameters and their important role throughout the model. Currently, the overall log-likelihood is computed using an avarege of the likelihood across the two groups; a standard average as opposed to weighted is more appropriate for this context. 
+
+Moreover, the set of parameters optimzied for likelihood can be thereafter contrasted against the _true_ parameters that were used to simulate the data. Plotting the set of parameters in the same plot enables deductions to be made regarding how well the data are fitted, particuarly which segments may be better fitted. 
+
+```{r}
+outALL <- do.call(rbind, outALL)
+
+best_solution <- outALL %>% 
+  subset(index == which(LogLikihoods$LogLik == max(LogLikihoods$LogLik))) %>%
+  group_by(time) %>%
+  mutate(expected_measurement = MLE$kappa*MLE$p*I)
+
+best_solution %>% ggplot() + 
+  geom_line(aes(x = time, y = expected_measurement), color = "black") +
+  geom_point(data = data, aes(x = time, y = Ih), size = 2) +
+  geom_point(data = data, aes(x = time, y = Iv), size = 2) +
+  geom_line(aes(x = time, y = Ih), color = "red") +
+  geom_line(aes(x = time, y = Iv), color = "blue")
+```
+
+# Next Steps
+
+The material explored in the sections above depict the necessary framework for this study, though there may be slight modifications made to procedures if deemed necessary. This may come in the form of additional data, even altering the current values, or changes to code. Although the likelihood code has been proposed, actuall analysis on this aspect have yet to be observed, and thus this is a focal point of this study going forward. Moreover, while likelihood is currently average across the two groups, it may be of interest to observe how frequently the best solution set of parameters is also the highest optimized set for likelihood within the two individual groups. This could be useful when observing the existence of any biases. Therefore, the required tools are all put into place, and now, it is simply a matter of applying them.   
+
 # References
 \newpage
 
