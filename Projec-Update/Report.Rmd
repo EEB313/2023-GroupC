@@ -21,7 +21,8 @@ dirLocation <- here("Project")
 In this research project we are interested in exaiming the Ross-Macdonald model, consiting of 7 paramters, which are used to describe the dynamics of Malaria
 transsmission. In our work, we would like to determine wheather all of the seven Ross-Macdonald model paramaters are equally necessary to reliably fit our
 simulated data. We are also interested in optimizing the performance of our code, so that the fitting calculations can be more quickly derived. Findings from 
-our research would clarify the importance of each parameter in the Ross-Macdonald model. Furthermore, our findings may enhance the computational efficiency for subsequent and similar research. 
+our research would clarify the importance of each parameter in the Ross-Macdonald model. Furthermore, our findings may enhance the computational efficiency
+for subsequent and similar research. 
 
 # Introduction 
 
