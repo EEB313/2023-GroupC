@@ -25,7 +25,8 @@ simulated data. We are also interested in optimizing the performance of our code
 Findings from our research would clarify the importance of each parameter in the Ross-Macdonald model. Furthermore, our findings may enhance the 
 computational efficiency for subsequent and similar research.
 
-#Mathematical Models
+# Mathematical Models
+
 Mathematical models are descriptions of biological processes which describe states under depicted assumptions and can help with an intuitive understanding for how those processes may unfold in nature [@ZHANG2023]. Moreover, they can be used to
 
 - clarify assumptions we may have about how complex systems work
