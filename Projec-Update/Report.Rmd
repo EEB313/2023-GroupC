@@ -18,14 +18,14 @@ library(patchwork)
 ```{r, include=FALSE}
 dirLocation <- here("Project")
 ```
-## Abstract
+# Abstract
 In this research project we are interested in examining the Ross-Macdonald model, which consists of 7 paramters used to describe the dynamics of Malaria
 transmission. In our work we would like to determine whether all of the seven Ross-Macdonald model paramaters are equally necessary to reliably fit
 simulated data. We are also interested in optimizing the performance of our code, so that the fitting calculations can be more quickly derived. 
 Findings from our research would clarify the importance of each parameter in the Ross-Macdonald model. Furthermore, our findings may enhance the 
 computational efficiency for subsequent and similar research.
 
-##Mathematical Models
+#Mathematical Models
 Mathematical models are descriptions of biological processes which describe states under depicted assumptions and can help with an intuitive understanding for how those processes may unfold in nature [@ZHANG2023]. Moreover, they can be used to
 
 - clarify assumptions we may have about how complex systems work
@@ -37,7 +37,7 @@ Mathematical models are descriptions of biological processes which describe stat
 
 A common application of models is to analyze infected population system dynamics. There are many models which match this characterization, each tailored to specific infections, conditions, and assumptions.
 
-## Model Selection
+# Model Selection
 
 The model of choice for this project is the Ross-MacDonald model, which can be 
 characterized as a SI model (suceptible, infectious) [@MANDAL2011]. The model can be devised
@@ -49,7 +49,7 @@ $$\frac{dI_v}{dt} = ac\frac{I_h}{H}(V - I_v) - \mu I_v \ \ \ \ \ \ \ \ \ \ \ (2)
 
 ## Brief History: Malaria and Mathematical Modelling
 
-Malaria is a deadly mosquito-borne disease caused by Plasmodium spp (Philips et al. 2017, Carvalho-Tavares et al. 2013). Malaria is primarily transmitted by mosquitoes (Anopheles), whose bite allows the entry of Plasmodium into the bloodstream. Once in a human host, infected individuals present with a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications (Philips et al. 2017). Despite continuous eradication efforts, Sub-Saharan Africa bears the brunt of this disease.  In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities (UNICEF 2023). In an effort to better understand vector-human relationships, many researchers have developed mathematical models, commonly differentialequation-based. One of the most well-known is the Ross-MacDonald model,a simple SI model used to predict disease dynamics over time [2]. The Ross-Macdonald model was first proposed by Sir Ronald Ross in the 1910s, and later extended by George MacDonald in the late 1950s [@SMITH2012], [@MAGORI2013]. Interestingly, the model would be finalized toward the ending of the Global Malaria Eradication Programme, which ran from 1955 to 1969 [@SMITH2012]. Since then, others have made contributions to the model, aiming to improve its accuracy. Frequently, this comes in the form of considering fixed variables to be dynamic, such as population size, or by introducing new variables such as quarantined individuals.
+Malaria is a deadly mosquito-borne disease caused by Plasmodium spp [@PHILIPS2017], [@TAVARES2013]. Malaria is primarily transmitted by mosquitoes (Anopheles), whose bite allows the entry of Plasmodium into the bloodstream. Once in a human host, infected individuals present with a set of non-specific symptoms, such as diarrhoea, fever, vomiting, and pulmonary complications [@PHILIPS2017]. Despite continuous eradication efforts, Sub-Saharan Africa bears the brunt of this disease.  In many cases, malaria leads to death - in 2021 alone, UNICEF reported more than 600,000 malaria-related fatalities [@UNICEF2023]. In an effort to better understand vector-human relationships, many researchers have developed mathematical models, commonly differentialequation-based. One of the most well-known is the Ross-MacDonald model, a simple SI model used to predict disease dynamics over time [@MANDAL2011]. The Ross-Macdonald model was first proposed by Sir Ronald Ross in the 1910s, and later extended by George MacDonald in the late 1950s [@SMITH2012], [@MAGORI2013]. Interestingly, the model would be finalized toward the ending of the Global Malaria Eradication Programme, which ran from 1955 to 1969 [@SMITH2012]. Since then, others have made contributions to the model, aiming to improve its accuracy. Frequently, this comes in the form of considering fixed variables to be dynamic, such as population size, or by introducing new variables such as quarantined individuals.
 
 While more sophisticated model may exist, the usefulness of the Ross-Macdonald 
 model is not lost upon, and remains a valiant model for initial characterization
@@ -273,12 +273,9 @@ Within the ten plots above, there is already some noticeable variation between t
 
 It should be noted that during the creation of data, it was briefly conjectured that picking a unique $m$ may be more valuable than unique $H$ and $V$. While the general shape may be preserved for similar $m$, the graphs tend to be scaled with respect to time. Moreover, if introducing stochasticity at any point within this study, smaller populations will be subjected to greater effects than the larger counterparts. Now that all the fundamental aspects of the model, data, and restrictions have been covered, likelihood can be considered.
 
-
-
-
 # Likelihood
 
-
+# References
 \newpage
 
 
