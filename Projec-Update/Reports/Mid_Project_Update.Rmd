@@ -1,0 +1,283 @@
+---
+title: "Mid-Project Update"
+author: Dylan Bradizza, Miles Abssy, Ofek Gross, Samuel Dumas
+date: "November 2nd 2023"
+bibliography: EEB313bib.bib
+csl: ieee.csl
+output:
+  pdf_document: default
+---
+
+```{r, include=FALSE}
+library(dplyr)
+library(tidyverse)
+library(here)
+library(deSolve)
+library(patchwork)
+```
+```{r, include=FALSE}
+dirLocation <- here("Project")
+```
+
+Mathematical models are descriptions of biological processes which describe states under depicted assumptions and can help for an intuitive understanding for how those processes may unfold in nature [@ZHANG2023]. Moreover, they can be used to
+
+- clarify assumptions we may have about how complex systems work
+- build understanding of how processes in complex systems interact
+- generate predictions and hypothesis
+- test predictions and hypothesis based on analysis of the model of fitting to data
+- determine what data is needed to learn about something (of if it is possible to, given the data that is available, reliably infer parameters of interest)
+- determine in what ways certain kinds of data may be problematic or biased
+
+A common application of models is analyze infected population system dynamics. There are many models which match this characterization, each tailored to specific infections, conditions, and assumptions.
+
+# Model Selection
+
+The model of choice for this project is the Ross-MacDonald model, which can be 
+characterized as a SI model (suceptible, infectious) [@MANDAL2011]. The model can be devised
+as seen below [@JIN2020]. 
+
+$$\frac{dI_h}{dt} = ab\frac{I_v}{H}(H-I_h) - \gamma I_h \ \ \ \ \ \ \ \ \ \ \ (1)$$
+$$\frac{dI_v}{dt} = ac\frac{I_h}{H}(V - I_v) - \mu I_v \ \ \ \ \ \ \ \ \ \ \ (2)$$
+
+
+## Brief History
+
+The Ross-Macdonald model was first proposed by Sir Ronald Ross in the 1910s, and 
+later extended by George MacDonald in the late 1950s [@SMITH2012], [@MAGORI2013]. Interestingly, the model
+would be finalized toward the ending of the Global Malaria Eradication 
+Programme, which ran from 1955 to 1969 [@SMITH2012]. Since then, others have made 
+contributions to the model, aiming to improve its accuracy. Frequently, this 
+comes in the form of considering fixed variables to be dynamic, such as 
+population size, or by introducing new variables such as quarantined 
+individuals.
+
+While more sophisticated model may exist, the usefulness of the Ross-Macdonald 
+model is not lost upon, and remains a valiant model for initial characterization
+of human-vector interactions in epidemiology [@MANDAL2011]. 
+
+
+## Assumptions
+
+Like any model, the Ross-Macdonald model has a set of assumptions which must
+be considered throughout data simulating and analysis. One of the most important assumptions of this
+model is that the population is closed, that is neither the human population nor
+the vector population may have new individuals introduced. Furthermore, that
+infections must strictly occur between a human and vector (i.e., human to vector
+or vector to human). Lastly, the model assumes that vector bites are evenly distributed throughout the human population and that mosquitoes must always have some opportunity to feed, to which the human is randomly selected [@MAGORI2013]. These assumptions form the theoretical framework of the model, however, flexibility can be promoted through the inclusion of implicit assumptions concerning the range of the parameters. 
+
+## Parameter Analysis
+
+There are seven parameters that are incorporated into the Ross-Macdonald Model, that is $a$, $b$, $c$, $H$, $V$, $\gamma$, and $\mu$ [@JIN2020]. More specifically, $a$, $b$, $H$, and $\gamma$ are used within Eq. (1), and $a$, $c$, $H$, $V$, $\mu$ are used within Eq. (2). When fixing the following parameters, it is crucial that the selected values are standardized to the same unit of time (e.g., days, months, years). In this study, the selected unit of time was days. Included below is the range that will be assumed for parameters.
+
+- mosquito biting rate ($a$): 0.1 - 1 [@CHITNIS2008],[@MWANGA2015],
+- transmission probability from infectious mosquito to susceptible human per bite ($b$): 0.01 - 0.8 [@CHITNIS2008], [@GU2003], [@MWANGA2015],
+- transmission probability from infectious human to suceptible mosquito per bite ($c$): 0.072 - 0.64 [@CHITNIS2008], [@GU2003], [@MWANGA2015],
+- ratio of mosquitoes to human ($m = V/H$): 1 - 10 [@ANDERSON1992], [@ARON1988], [@GAO2014],
+- recovery rate of humans ($\gamma$): 0.005 - 0.05 [@CHITNIS2008], [@MWANGA2015], [@ANDERSON1982], [@RUAN2008],
+- mortality rate of mosquitoes ($\mu$): 0.05 - 0.33 [@MWANGA2015], [@ANDERSON1982].
+
+Although this value is not a parameter, we may briefly consider the $R_0$ value for this model, as it is entirely defined by these parameters [@JIN2020].
+
+$$R_0 = \sqrt{\frac{a^2 b c m}{\mu \gamma}} \ \ \ \ \ \ \ \ \ \ \ (3)$$
+
+Notably, when consider if the disease will persist the square root can be omitted. As $\forall n \in \mathbb{R}^+, \sqrt{n} > 1 \Longrightarrow n > 1$, and similarly $0 < \sqrt{n} < 1 \Longrightarrow 0 < n < 1$. Although it remains important to consider the quantitative ranges of variables, understanding the nature of these parameters and how they observed is important. Albeit, some of the parameters within this model are easier to measure with sufficient accuracy. Parameters for which this holds may be referred to as knows, and parameters for which this is contrary, we may address as unknowns. 
+
+
+### Knowns
+
+There are two parameters that can be reliably inferred in most contexts, that is the size of the human population and the recovery rate. There are many techniques that can be used to estimate the size of populations where conducting a census of the population is feasible and reliable. Notice that both of these tend to be diminished with respect to mosquito populations. Moreover, it is possible to track how long it takes for a human individual to recover. The conditions required for these to be well known is often contingent on the economic resources available and the spatial range of the population. Although biting rate cannot be measured as efficiently, there are some approaches that would be enable reasonable estimate (e.g., counting the number of individuals on a random sample of humans over time). Hence, the known parameters for this model are $a$, $H$, and $\gamma$.      
+
+### Unknowns
+
+The remaining variables $b$, $c$, $V$, and $\mu$ are therefore the unknown variables for this model. Focusing on the latter half, consider that mosquitoes are quite small and numerous, which makes estimating their population size difficult. This has been previously approached using mark-recapture experiments, but reported confidence intervals were quite large which reflects the uncertainty present with estimating mosquito populations. Consequently, it can be quite difficult to further determine the rate at which the mosquitoes are dying [@CIANCI2013]. A survival function was also considered in the studied mentioned there above, with similar inaccuracies. Furthermore, determining both the probability of an infected mosquito biting a human and the probability of an infected human being bite by a mosquito is quite complex, particularly when taking stochasticity into account. These probabilities are often the consequence of interactions between other parameters within the model (i.e., larger $H$ may increase $b$, and larger $V$ may increase $c$). With respect to the difficulties expressed concerning reliably estimating these parameters, it may be of interest to explore the possibility of bypassing taking measurements to derive a value. Inferring parameters can be done by means of likelihood, to which this study aims to research. 
+
+# Aims and Objectives
+
+As discussed in the previous section, some parameters may be easier to determine, or at the very least approximate. Fortunately, one can use likelihood to see how well certain parameters fit the data, to then estimate what is most likely the true parameter [@ZHANG2023]. While likelihood is a formidable tool in inferring parameters, accuracy is not always guaranteed. Ultimately, some parameters may prove to yield weaker predictions, indicating that these values cannot be inferred through likelihood. Conversely, some parameters may prove to be anchors to predictions made, indicating that these values are crucial to accurate estimation, and consequently, the model as a whole. From this, we may delineate the following null hypotheses.
+
+- $H_0$: All (seven) of the parameters are required to reliably fit the data.
+- $H_A$: There exists some subset of parameters, $S \subset \{a, b, c, H, V, \gamma, \mu\}$, which can be used to reliably fit the data. 
+
+Observing subsets of any size at most seven can be quite demanding computationally $\sum_{n=1}^7 \left(^7_n\right)$, and thus it may be better to observe subsets up to a smaller size; as there were four unknown parameters, this will be the largest size considered in this study. This yields a total of 98 distinct subsets. Therefore, using likelihood, the hypothesis aims to verify how many parameters are required to explain the data.  
+
+# Model Setup
+
+Firstly, we must define the Ordinary Differential System (ODE) system within R using the package `deSolve` [@SOETART2010]. Here, we are using `dIh` to denote the change in infectious humans, and `dIv` to denote the change in infectious vectors. 
+
+```{r}
+rossMacOde <- function(times, state, params){
+  with(as.list(c(state,params)),{
+    dIh <- a * b * Iv / H * (H - Ih) - gamma * Ih
+    dIv <- a * c * Ih / H * (V - Iv) - mu * Iv
+    
+    return(list(c(dIh, dIv)))
+  })
+}
+```
+
+As indicated in the _Model Selection_ section, the Ross-MacDonald model comprises of two differential equations. While the code above will correctly implement the desired model, it remains important to ensure that initial conditions and time intervals are compatible with the parameters. Notably, it must be that ${I_v}_0 \leq V, {I_h}_0 \leq H$, and that the time intervals be in units of days. It is unlikely that initial infected populations are close to the entire population size in the instances that are tested, as there tends to be minimal variation, but it may be worth giving slight overview for a complete understanding of the model logistics when addressing required data. 
+
+Now that our ODE system has been setup, data can be inputted into our model to simulate infected population numbers through time. Below is a template delineating which data should be stored and where to store it; these are denoted using the angle brackets (< >). This requires fixing seven parameters, two initial values, and an overall time frame. As time should be considered using days as units and it is frequently of interest to consider data over some number of years ($n$), `times` should be defined by `seq(1,365*n)`. 
+
+
+```{r, eval = FALSE}
+params <- c(a, b, c, H, V, gamma, mu)
+
+ivInt <- <initial infected vectors>; ihInt <- <initial infected humans>
+times <- <time stamps to be considered>
+
+state <- c(Ih = ihInt, Iv = ivInt)
+
+out <- as.data.frame(ode(state, times, rossMacOde, params)) %>% 
+  pivot_longer(! time)
+```
+
+There are two stable states that occur within this model, that is the number of infections decipitates to zero, or the number of infected individuals humans and vectors reaches some capacity (bounded at least by $H$ and $V$, respectively). This can be seen in the following equations.
+
+$$I_h*=0=I_v* \Longrightarrow \frac{dI_h}{dt}=ab\frac{0}{H}(H - 0) - \gamma \cdot 0 = 0, \ \frac{dI_v}{dt} = ac \frac{0}{H}(V - 0) - \mu \cdot 0 = 0  \ \ \ \ \ \ \ \ \ \ \ (4)$$
+$$ $$
+
+It may be the case that certain sets of parameters and initial values require significant time to reach their equilibrium, however, the time frame shall hopefully allow for most models to reach this state. 
+
+## Parameter Data
+
+The seven parameters that are used within the Ross-Macdonald model occupy the largest role within the model with respect to outcomes over time. Consider that $R_0$ is entirely defined by these seven parameters, and thus, the parameters alone whether the number of infections will grow within the model. While initial values are also important as subsequent data is generated based on the initial state, these computations are done with respect to the parameters. 
+
+Within this study, a total of 1728 combinations of parameters will be tested. These combinations were generating using 2, 3, 3, 4, 4, 3, and 2 values for $a$, $b$, $c$, $H$, $V$, $\gamma$, and $\mu$, respectively. This can be imported by running the following code chunk.
+
+```{r, include=FALSE}
+setwd(paste(dirLocation, "/Data", sep =''))
+parData <- read_csv("EEB313_Project_Data.csv")
+```
+
+```{r, eval = FALSE}
+parData <- read_csv("EEB313_Project_Data.csv")
+```
+
+
+The majority of the parameter combinations within this data set (41/48 to be specific) have an $R_0$ greater than 1. While it remains within the scope of this study to observe models where the infection dies down, there is a stronger emphasis on situations where the infection prevails. An initial viewing of the data can be seen below.
+
+```{r}
+#str(parData)
+head(parData)
+```
+
+Although this has been made evident thus far, this data set does not contain initial values nor time intervals. However, this data set provides a great foundation for introducing these quantities, to then begin the implementation of likelihood.
+
+## Initial Values and Time
+
+The Ross-Macdonald model requires two initials values, that is the initial number of infected humans (${I_h}_0$) and the initial number of infected vectors (${I_v}_0$). Unlike the parameter $m$, there are no constraints on the ratio of infected individuals from each group (aside from being bounded by $H$ and $V$ respectively). Consequently, selecting pairs of initial infected populations should be done according to those parameters. By slightly changing initial values, observing how likelihood varies on a smaller scale can be thoroughly done. Moreover, time should be considered such that the model reaches equilibrium for any set of parameters, at least as an initial exploration. It might be useful/interesting to observe the strength of likelihood even if the model has yet to reach equilibrium. Consider that even in real data (ignoring dynamic influence), the data may not have yet reach a stable/unstable state. After observing simulated data from a sample of plots, 10 years seems to be roughly appropriate for a time frame. 
+
+```{r}
+buildN <- function(ih,
+                   iv,
+                   m,
+                   n = 10){
+  dflist <- list()
+  times <- seq(1, 365*m)
+  state <- c(Ih = ih, Iv = iv)
+  parI <- sample(1:1728, 10, replace = F)
+  for (i in 1:n){
+  params <- parData[parI[i],]
+  out <- as.data.frame(ode(state, times, rossMacOde, params)) %>% 
+     pivot_longer(! time)
+  dflist[[i]] <- out
+  }
+  return(dflist)
+}
+```
+
+The function `buildN` creates a list containing ten random sets of parameters (without replacement) from `parData`. More or less draws can be made, however ten is the default. Notably, the data frames contained within the elements of this list have 3 columns; time ($t$), infected humans ($I_h$), and infected vectors ($I_V$). These can then be plotted, comparing infected abundance against time.
+
+```{r, echo=FALSE}
+demo10 <- buildN(5, 5, 2)
+
+d1 <- ggplot(demo10[[1]], aes(x = time, y = value, color = name))+
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #1)")
+
+d2 <- ggplot(demo10[[2]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #2)")
+
+d3 <- ggplot(demo10[[3]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #3)")
+
+d4 <- ggplot(demo10[[4]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #4)")
+
+d5 <- ggplot(demo10[[5]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #5)")
+
+d6 <- ggplot(demo10[[6]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #6)")
+
+d7 <- ggplot(demo10[[7]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #7)")
+
+d8 <- ggplot(demo10[[8]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #8)")
+
+d9 <- ggplot(demo10[[9]], aes(x = time, y = value, color = name)) +
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #9)") 
+
+d10 <- ggplot(demo10[[10]], aes(x = time, y = value, color = name)) + 
+  geom_line() +
+  labs(x = "Time (Days)", 
+       y = "Number of Infected Individuals", 
+       title = "Number of Infected Individuals 
+versus Time (Parameters #10)")
+
+d1 + d2 + d3 + d4 + plot_layout(ncol = 2)
+d5 + d6 + d7 + d8 + plot_layout(ncol = 2)
+d9 + d10 + plot_layout(ncol = 2)
+# wrap_plots(d1,d2,d3,d4, nrow = 2)
+# wrap_plots(d5,d6,d7,d8,d9,d10, nrow = 3, widths = 50000)
+```
+
+Within the ten plots above, there is already some noticeable variation between their outcomes. While fixing the $y$-axis across the plots would ensure a more appropriate analysis, the main purpose of these plots if to introduce how some of the population dynamics appear within this model. 
+
+It should be noted that during the creation of data, it was briefly conjectured that picking a unique $m$ may be more valuable than unique $H$ and $V$. While the general shape may be preserved for similar $m$, the graphs tend to be scaled with respect to time. Moreover, if introducing stochasticity at any point within this study, smaller populations will be subjected to greater effects than the larger counterparts. Now that all the fundamental aspects of the model, data, and restrictions have been covered, likelihood can be considered.
+
+
+
+
+# Likelihood
+
+
+\newpage
+
