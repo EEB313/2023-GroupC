@@ -19,9 +19,9 @@ library(patchwork)
 dirLocation <- here("Project")
 ```
 # Abstract
-In this research project we are interested in examining the Ross-Macdonald model, which consists of 7 paramters used to describe the dynamics of Malaria
-transmission. In our work we would like to determine whether all of the seven Ross-Macdonald model paramaters are equally necessary to reliably fit
-simulated data. We are also interested in optimizing the performance of our code, so that the fitting calculations can be more quickly derived. 
+In this research project we are interested in examining the Ross-Macdonald model, which consists of 7 parameters used to describe the dynamics of Malaria
+transmission. In our work we would like to determine whether all of the seven Ross-Macdonald model parameters are equally necessary to reliably fit
+simulated data. We are also interested in optimizing the performance of our code, so that the run time for fitting the model is decreased. 
 Findings from our research would clarify the importance of each parameter in the Ross-Macdonald model. Furthermore, our findings may enhance the 
 computational efficiency for subsequent and similar research.
 
@@ -71,8 +71,8 @@ or vector to human). Lastly, the model assumes that vector bites are evenly dist
 There are seven parameters that are incorporated into the Ross-Macdonald Model, that is $a$, $b$, $c$, $H$, $V$, $\gamma$, and $\mu$ [@JIN2020]. More specifically, $a$, $b$, $H$, and $\gamma$ are used within Eq. (1), and $a$, $c$, $H$, $V$, $\mu$ are used within Eq. (2). When fixing the following parameters, it is crucial that the selected values are standardized to the same unit of time (e.g., days, months, years). In this study, the selected unit of time was days. Included below is the range that will be assumed for parameters.
 
 - mosquito biting rate ($a$): 0.1 - 1 [@CHITNIS2008],[@MWANGA2015],
-- transmission probability from infectious mosquito to susceptible human per bite ($b$): 0.01 - 0.8 [@CHITNIS2008], [@GU2003], [@MWANGA2015],
-- transmission probability from infectious human to suceptible mosquito per bite ($c$): 0.072 - 0.64 [@CHITNIS2008], [@GU2003], [@MWANGA2015],
+- transmission probability from infectious mosquito to susceptible human per bite ($b$): 0.01 - 0.8 [@CHITNIS2008], [@MWANGA2015], [@GU2003],
+- transmission probability from infectious human to suceptible mosquito per bite ($c$): 0.072 - 0.64 [@CHITNIS2008], [@MWANGA2015], [@GU2003],
 - ratio of mosquitoes to human ($m = V/H$): 1 - 10 [@ANDERSON1992], [@ARON1988], [@GAO2014],
 - recovery rate of humans ($\gamma$): 0.005 - 0.05 [@CHITNIS2008], [@MWANGA2015], [@ANDERSON1982], [@RUAN2008],
 - mortality rate of mosquitoes ($\mu$): 0.05 - 0.33 [@MWANGA2015], [@ANDERSON1982].
@@ -363,7 +363,7 @@ The material explored in the sections above depict the necessary framework for t
 - Abstract: Ofek
 - Mathematical Models: Sam
 - Model Selection: Dylan
-  - Brief History: Dylan, Miles, Sam, Ofek
+  - Brief History: Dylan, Miles, Ofek, Sam
   - Assumptions: Miles
   - Parameter Analysis: Miles, Sam
     - Known: Sam
@@ -374,7 +374,7 @@ The material explored in the sections above depict the necessary framework for t
   - Initial Values: Sam
 - Likelihood: Sam
 - Next Steps: Sam
-
+- Review & Edits: Dylan, Miles, Ofek, Sam
 
 
 \newpage
