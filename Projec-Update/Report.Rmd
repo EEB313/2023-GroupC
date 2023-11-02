@@ -40,13 +40,26 @@ $$\frac{dI_h}{dt} = ab\frac{I_v}{H}(H-I_h) - \gamma I_h \ \ \ \ \ \ \ \ \ \ \ (1
 $$\frac{dI_v}{dt} = ac\frac{I_h}{H}(V - I_v) - \mu I_v \ \ \ \ \ \ \ \ \ \ \ (2)$$
 
 
-## Brief History
+## Brief History: Malaria and Mathematical Modelling
 
-The Ross-Macdonald model was first proposed by Sir Ronald Ross in the 1910s, and 
-later extended by George MacDonald in the late 1950s [@SMITH2012], [@MAGORI2013]. Interestingly, the model
-would be finalized toward the ending of the Global Malaria Eradication 
-Programme, which ran from 1955 to 1969 [@SMITH2012]. Since then, others have made 
-contributions to the model, aiming to improve its accuracy. Frequently, this 
+Malaria is a deadly mosquito-borne disease caused by Plasmodium spp 
+(Philips et al. 2017, Carvalho-Tavares et al. 2013). Malaria is primarily 
+transmitted by mosquitoes (Anopheles), whose bite allows the entry of 
+Plasmodium into the bloodstream. Once in a human host, infected individuals 
+present with a set of non-specific symptoms, such as diarrhoea, fever, 
+vomiting, and pulmonary complications (Philips et al. 2017). Despite 
+continuous eradication efforts, Sub-Saharan Africa bears the brunt of 
+this disease.  In many cases, malaria leads to death - in 2021 alone, 
+UNICEF reported more than 600,000 malaria-related fatalities (UNICEF 
+2023). In an effort to better understand vector-human relationships, 
+many researchers have developed mathematical models, commonly differential
+equation-based. One of the most well-known is the Ross-MacDonald model,
+a simple SI model used to predict disease dynamics over time [2]. The 
+Ross-Macdonald model was first proposed by Sir Ronald Ross in the 1910s, and 
+later extended by George MacDonald in the late 1950s [@SMITH2012], [@MAGORI2013].
+Interestingly, the model would be finalized toward the ending of the Global Malaria 
+Eradication Programme, which ran from 1955 to 1969 [@SMITH2012]. Since then, 
+others have made contributions to the model, aiming to improve its accuracy. Frequently, this 
 comes in the form of considering fixed variables to be dynamic, such as 
 population size, or by introducing new variables such as quarantined 
 individuals.
