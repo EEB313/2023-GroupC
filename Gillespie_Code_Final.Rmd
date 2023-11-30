@@ -103,5 +103,8 @@ result2 <- data.frame(result)
   ylab("Infected") +
   transition_reveal(times)
 
+anim_save("Gillespie.gif")
+
+
 plot(result[,1], result[,2], type ="l")
 ```
