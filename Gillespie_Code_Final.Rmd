@@ -1,0 +1,107 @@
+---
+title: "Gillespie Algorithm Draft"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+library(gganimate)
+library(hrbrthemes)
+```
+
+
+```{r}
+calc_rates <- function(state, parameters) {
+  Ih <- state[1]
+  Iv <- state[2]
+  H <- parameters$H
+  V <- parameters$V
+  a <- parameters$a
+  b <- parameters$b
+  c <- parameters$c
+  gamma <- parameters$gamma
+  mu <- parameters$mu
+  
+  propensities <- c(
+    ((H-Ih)* a * b * Iv)/ H,
+    ((V - Iv)* a * c * Ih)/ H,
+    gamma * Ih,
+    mu * Iv
+  )
+  
+  return(propensities)
+}
+
+nu <- matrix(c(+1, 0, -1, 0,
+               0, +1, 0, -1), 
+             nrow = 2, byrow = TRUE)
+
+calc_event <- function(state, parameters) {
+  rates <- calc_rates(state, parameters)
+  total_rate <- sum(rates)
+  
+  tau <- rexp(1, rate = total_rate)
+  
+  event_probabilities <- rates / total_rate
+  event <- sample(1:length(rates), size = 1, prob = event_probabilities)
+  
+  return(list(tau, event))
+}
+
+initial_state <- c(Ih = 10, Iv = 5)  
+parameters <- list(H = 100, V = 50, a = 0.1, b = 0.2, c = 0.3, gamma = 0.01, mu = 0.005)
+total_time <- 1000
+
+gillespie_full <- function(initial_state, parameters, total_time) {
+  
+  t <- 0
+  i <- 1
+  state <- matrix(initial_state, nrow=1)
+  times <- c(t)
+
+  while (t < total_time) {
+    step_result <- calc_event(state, parameters)
+    
+    if (state[i,1] == 0 & state[i,2] == 0){
+      break
+    }
+    
+    t <- t + step_result[[1]]
+    state <- rbind(
+      state,
+      state[i,] + nu[,step_result[[2]]]
+    )
+    
+    if (state[i+1,1] > parameters$H){
+      state[i+1,1] <- parameters$H
+    }
+    
+    if (state[i+1,2] > parameters$V){
+      state[i+1,2] <- parameters$V
+    }
+    
+    times <- c(times, t)
+    i <- i+1
+  }
+  
+  return(cbind(times,  state))
+}
+class(result)
+
+result <- gillespie_full(initial_state, parameters, total_time)
+
+result2 <- data.frame(result)
+
+
+  ggplot(result2, aes(x=times, y= V2, type = "l")) +
+  geom_line() +
+  geom_point() +
+  enter_fade() +
+  exit_fade() +
+  ggtitle("Gillespie Output") +
+  theme_ipsum() +
+  ylab("Infected") +
+  transition_reveal(times)
+
+plot(result[,1], result[,2], type ="l")
+```
