@@ -1,1 +1,1 @@
-
+Ross-MacDonald Overview: The Ross-MacDonald is a deterministic model consisting of two differential equations, one describes the rate of change in the number of infected humans, whereas the other describes the rate of change in the number of infected mosquitoes (see figure 1). In this project we specifically focused on estimating the probability of transmission from a mosquito vector to a human host (variable b), and the probability of transmission from a human host to a vector (variable c).  
