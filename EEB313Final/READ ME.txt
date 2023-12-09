@@ -1,0 +1,8 @@
+READ ME
+
+Task Distribution
+
+Background Research - Dylan
+MLE - Ofek, Sam
+Stochasticity - Miles
+Simulating and Exporting - Sam
