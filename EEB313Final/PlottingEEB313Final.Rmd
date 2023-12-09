@@ -73,15 +73,124 @@ ggplot(aes(x = as.factor(c))) +
 
 
 ```{r}
-subset(dfFull, dfFull$b != 0.2 | dfFull$c != 0.3)$distance %>% 
-  mean()
+cleanedDF <- as.data.frame(subset(dfFull, dfFull$b != 0.2 | dfFull$c != 0.3))
+cleanedDF10 <- as.data.frame(subset(df10, df10$b != 0.2 | df10$c != 0.3))
+cleanedDF50 <- as.data.frame(subset(df50, df50$b != 0.2 | df50$c != 0.3))
+cleanedDF100 <- as.data.frame(subset(df100, df100$b != 0.2 | df100$c != 0.3))
+cleanedDF500 <- as.data.frame(subset(df500, df500$b != 0.2 | df500$c != 0.3))
+cleanedDF1000 <- as.data.frame(subset(df1000, df1000$b != 0.2 | df1000$c != 0.3))
 
-subset(dfFull, dfFull$b != 0.2 | dfFull$c != 0.3)$distance %>% 
-  sd()
+mean(cleanedDF$distance)
+sd(cleanedDF$distance)
+
+cleanedDF %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF %>% 
+  group_by(c) %>% 
+  tally()
 ```
 
+```{r}
+cleanedDF10 %>% 
+  group_by(b) %>% 
+  tally()
 
+cleanedDF10 %>% 
+  group_by(c) %>% 
+  tally()
 
+cleanedDF50 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF50 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF100 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF100 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF500 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF500 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF1000 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF1000 %>% 
+  group_by(c) %>% 
+  tally()
+```
+
+```{r}
+mean(cleanedDF10$distance)
+mean(cleanedDF50$distance)
+mean(cleanedDF100$distance)
+mean(cleanedDF500$distance)
+mean(cleanedDF1000$distance)
+```
+
+```{r}
+dfMixed <- subset(dfFull, dfFull$b == 0.2 & dfFull$c == 0.3)
+
+mixedDF10 <- as.data.frame(subset(df10, df10$b != 0.2 & df10$c != 0.3))
+mixedDF50 <- as.data.frame(subset(df50, df50$b != 0.2 & df50$c != 0.3))
+mixedDF100 <- as.data.frame(subset(df100, df100$b != 0.2 & df100$c != 0.3))
+mixedDF500 <- as.data.frame(subset(df500, df500$b != 0.2 & df500$c != 0.3))
+mixedDF1000 <- as.data.frame(subset(df1000, df1000$b != 0.2 & df1000$c != 0.3))
+
+mixedDF10 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF10 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF50 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF50 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF100 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF100 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF500 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF500 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF1000 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF1000 %>% 
+  group_by(c) %>% 
+  tally()
+````
 
 
 
