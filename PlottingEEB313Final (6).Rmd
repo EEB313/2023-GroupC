@@ -1,0 +1,333 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r}
+library(tidyverse)
+library(dplyr) 
+library(readxl)
+library(here)
+library(ggbeeswarm)
+```
+
+```{r Data Loading, warning=FALSE}
+setwd("/Users/dylanbradizza/Desktop/EEB313/Untitled/EEB313Final/Data")
+df1 <- read_csv("EEB313POP10.1.csv")
+df2 <- read_csv("EEB313POP10.1.csv")
+df3 <- read_csv("EEB313POP10.1.csv")
+df4 <- read_csv("EEB313POP10.1.csv")
+  df10 <- rbind(df1, df2, df3, df4) %>% 
+  mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
+df1 <- read_csv("EEB313POP50.1.csv")
+df2 <- read_csv("EEB313POP50.1.csv")
+df3 <- read_csv("EEB313POP50.1.csv")
+df4 <- read_csv("EEB313POP50.1.csv")
+  df50 <- rbind(df1, df2, df3, df4) %>% 
+  mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
+df1 <- read_csv("EEB313POP100.1.csv")
+df2 <- read_csv("EEB313POP100.1.csv")
+df3 <- read_csv("EEB313POP100.1.csv")
+df4 <- read_csv("EEB313POP100.1.csv")
+  df100 <- rbind(df1, df2, df3, df4) %>% 
+  mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
+df1 <- read_csv("EEB313POP500.1.csv")
+df2 <- read_csv("EEB313POP500.1.csv")
+df3 <- read_csv("EEB313POP500.1.csv")
+df4 <- read_csv("EEB313POP500.1.csv")
+  df500 <- rbind(df1, df2, df3, df4) %>% 
+  mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
+df1 <- read_csv("EEB313POP1000.1.csv")
+df2 <- read_csv("EEB313POP1000.1.csv")
+df3 <- read_csv("EEB313POP1000.1.csv")
+df4 <- read_csv("EEB313POP1000.1.csv")
+  df1000 <- rbind(df1, df2, df3, df4) %>% 
+  mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
+  
+dfFull <- rbind(df10, df50, df100, df500, df1000)
+
+```
+
+
+```{r}
+str(dfFull)
+
+summary(dfFull)
+```
+
+
+```{r}
+subset(mixedDF2, mixedDF2$b != 0.2) %>% 
+ggplot(aes(x = as.factor(b))) +
+  geom_bar(fill = "blue") +
+  labs(title="Mixed")+
+  theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "white")
+  ) + 
+  scale_fill_hue(c=45, l=80) +
+  ylab("Count") +
+  xlab("b") 
+  
+```
+
+```{r}
+subset(cleanedDF2, cleanedDF2$b != 0.2) %>% 
+ggplot(aes(x = as.factor(b))) +
+  geom_bar(fill = "blue") +
+  labs(title="Cleaned")+
+  theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "white")
+  ) + 
+  scale_fill_hue(c=45, l=80) +
+  ylab("Count") +
+  xlab("b") 
+  
+```
+
+
+
+
+
+```{r}
+subset(mixedDF2, mixedDF2$c != 0.3) %>% 
+ggplot(aes(x = as.factor(c))) +
+  geom_bar(fill = "blue") +
+   geom_bar(fill = "blue") +
+  labs(title="Mixed")+
+  theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "white")
+  ) + 
+  scale_fill_hue(c=45, l=80) +
+  ylab("Count") +
+  xlab("c") 
+```
+
+```{r}
+subset(cleanedDF2, cleanedDF2$c != 0.3) %>% 
+ggplot(aes(x = as.factor(c))) +
+  geom_bar(fill = "blue") +
+   geom_bar(fill = "blue") +
+  labs(title="Cleaned")+
+  theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "white")
+  ) + 
+  scale_fill_hue(c=45, l=80) +
+  ylab("Count") +
+  xlab("c") 
+```
+
+
+```{r}
+cleanedDF <- as.data.frame(subset(dfFull, dfFull$b != 0.2 | dfFull$c != 0.3))
+cleanedDF10 <- as.data.frame(subset(df10, df10$b != 0.2 | df10$c != 0.3))
+cleanedDF50 <- as.data.frame(subset(df50, df50$b != 0.2 | df50$c != 0.3))
+cleanedDF100 <- as.data.frame(subset(df100, df100$b != 0.2 | df100$c != 0.3))
+cleanedDF500 <- as.data.frame(subset(df500, df500$b != 0.2 | df500$c != 0.3))
+cleanedDF1000 <- as.data.frame(subset(df1000, df1000$b != 0.2 | df1000$c != 0.3))
+
+mean(cleanedDF$distance)
+sd(cleanedDF$distance)
+
+cleanedDF %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF %>% 
+  group_by(c) %>% 
+  tally()
+```
+
+```{r}
+cleanedDF10 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF10 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF50 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF50 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF100 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF100 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF500 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF500 %>% 
+  group_by(c) %>% 
+  tally()
+
+cleanedDF1000 %>% 
+  group_by(b) %>% 
+  tally()
+
+cleanedDF1000 %>% 
+  group_by(c) %>% 
+  tally()
+```
+
+```{r}
+mean(cleanedDF10$distance)
+mean(cleanedDF50$distance)
+mean(cleanedDF100$distance)
+mean(cleanedDF500$distance)
+mean(cleanedDF1000$distance)
+```
+
+```{r}
+dfMixed <- subset(dfFull, dfFull$b == 0.2 & dfFull$c == 0.3)
+
+mixedDF10 <- as.data.frame(subset(df10, df10$b != 0.2 & df10$c != 0.3))
+mixedDF50 <- as.data.frame(subset(df50, df50$b != 0.2 & df50$c != 0.3))
+mixedDF100 <- as.data.frame(subset(df100, df100$b != 0.2 & df100$c != 0.3))
+mixedDF500 <- as.data.frame(subset(df500, df500$b != 0.2 & df500$c != 0.3))
+mixedDF1000 <- as.data.frame(subset(df1000, df1000$b != 0.2 & df1000$c != 0.3))
+
+mixedDF10 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF10 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF50 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF50 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF100 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF100 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF500 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF500 %>% 
+  group_by(c) %>% 
+  tally()
+
+mixedDF1000 %>% 
+  group_by(b) %>% 
+  tally()
+
+mixedDF1000 %>% 
+  group_by(c) %>% 
+  tally()
+```
+
+```{r}
+
+cleanedDF10$ID <- rep("10", nrow(cleanedDF10)) 
+cleanedDF100$ID <- rep("100", nrow(cleanedDF100))
+cleanedDF1000$ID <- rep("1000", nrow(cleanedDF1000))
+cleanedDF50$ID <- rep("50", nrow(cleanedDF50))
+cleanedDF500$ID <- rep("500", nrow(cleanedDF500))
+
+cleanedDF10$ID <-as.factor(cleanedDF10$ID)
+cleanedDF100$ID <-as.factor(cleanedDF100$ID)
+cleanedDF1000$ID <-as.factor(cleanedDF1000$ID)
+cleanedDF50$ID <-as.factor(cleanedDF50$ID)
+cleanedDF500$ID <-as.factor(cleanedDF500$ID)
+
+cleanedDF2 <- rbind(cleanedDF10, cleanedDF50, cleanedDF100, cleanedDF500, cleanedDF1000)
+
+plot1 <- ggplot(cleanedDF2, aes(x=ID, y=distance)) + 
+  geom_violin(fill = "blue") + 
+  labs(title="Population Size on Euclidian Distance (Cleaned)",
+        x ="Population Size", y = "Euclidian Distance") +
+theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "white")
+  ) + 
+  scale_fill_hue(c=45, l=80)
+print(plot1)
+```
+
+```{r}
+mixedDF10$ID <- rep("10", nrow(mixedDF10)) 
+mixedDF100$ID <- rep("100", nrow(mixedDF100))
+mixedDF1000$ID <- rep("1000", nrow(mixedDF1000))
+mixedDF50$ID <- rep("50", nrow(mixedDF50))
+mixedDF500$ID <- rep("500", nrow(mixedDF500))
+
+mixedDF10$ID <-as.factor(mixedDF10$ID)
+mixedDF100$ID <-as.factor(mixedDF100$ID)
+mixedDF1000$ID <-as.factor(mixedDF1000$ID)
+mixedDF50$ID <-as.factor(mixedDF50$ID)
+mixedDF500$ID <-as.factor(mixedDF500$ID)
+
+mixedDF2 <- rbind(mixedDF10, mixedDF50, mixedDF100, mixedDF500, mixedDF1000)
+
+plot2 <- ggplot(mixedDF2, aes(x=ID, y=distance)) + 
+  geom_violin(fill = "blue") + 
+  labs(title="Population Size on Euclidian Distance (Mixed)",
+        x ="Population Size", y = "Euclidian Distance") +
+theme(
+  panel.background = element_rect(fill = "lightblue",
+                                colour = "lightblue",
+                                size = 0.5, linetype = "solid"),
+  panel.grid.major = element_line(size = 0.5, linetype = 'solid',
+                                colour = "white"), 
+  panel.grid.minor = element_line(size = 0.25, linetype = 'solid',
+                                colour = "white")
+  ) + 
+  scale_fill_hue(c=45, l=80)
+print(plot2)
+
+
+
+```
+
+
