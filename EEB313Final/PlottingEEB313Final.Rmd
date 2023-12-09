@@ -9,40 +9,38 @@ library(tidyverse)
 library(dplyr) 
 library(readxl)
 library(here)
-
-DATAPATH <- here() + "/Data"
 ```
 
 ```{r Data Loading, warning=FALSE}
 
-df1 <- read_csv(here("Data", "EEB313POP10.1.csv"))
-df2 <- read_csv(here("Data", "EEB313POP10.1.csv"))
-df3 <- read_csv(here("Data", "EEB313POP10.1.csv"))
-df4 <- read_csv(here("Data", "EEB313POP10.1.csv"))
+df1 <- read_csv(here("EEB313Final", "Data", "EEB313POP10.1.csv"))
+df2 <- read_csv(here("EEB313Final", "Data", "EEB313POP10.1.csv"))
+df3 <- read_csv(here("EEB313Final", "Data", "EEB313POP10.1.csv"))
+df4 <- read_csv(here("EEB313Final", "Data", "EEB313POP10.1.csv"))
   df10 <- rbind(df1, df2, df3, df4) %>% 
   mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
-df1 <- read_csv(here("Data", "EEB313POP50.1.csv"))
-df2 <- read_csv(here("Data", "EEB313POP50.1.csv"))
-df3 <- read_csv(here("Data", "EEB313POP50.1.csv"))
-df4 <- read_csv(here("Data", "EEB313POP50.1.csv"))
+df1 <- read_csv(here("EEB313Final", "Data", "EEB313POP50.1.csv"))
+df2 <- read_csv(here("EEB313Final", "Data", "EEB313POP50.1.csv"))
+df3 <- read_csv(here("EEB313Final", "Data", "EEB313POP50.1.csv"))
+df4 <- read_csv(here("EEB313Final", "Data", "EEB313POP50.1.csv"))
   df50 <- rbind(df1, df2, df3, df4) %>% 
   mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
-df1 <- read_csv(here("Data", "EEB313POP100.1.csv"))
-df2 <- read_csv(here("Data", "EEB313POP100.1.csv"))
-df3 <- read_csv(here("Data", "EEB313POP100.1.csv"))
-df4 <- read_csv(here("Data", "EEB313POP100.1.csv"))
+df1 <- read_csv(here("EEB313Final", "Data", "EEB313POP100.1.csv"))
+df2 <- read_csv(here("EEB313Final", "Data", "EEB313POP100.1.csv"))
+df3 <- read_csv(here("EEB313Final", "Data", "EEB313POP100.1.csv"))
+df4 <- read_csv(here("EEB313Final", "Data", "EEB313POP100.1.csv"))
   df100 <- rbind(df1, df2, df3, df4) %>% 
   mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
-df1 <- read_csv(here("Data", "EEB313POP500.1.csv"))
-df2 <- read_csv(here("Data", "EEB313POP500.1.csv"))
-df3 <- read_csv(here("Data", "EEB313POP500.1.csv"))
-df4 <- read_csv(here("Data", "EEB313POP500.1.csv"))
+df1 <- read_csv(here("EEB313Final", "Data", "EEB313POP500.1.csv"))
+df2 <- read_csv(here("EEB313Final", "Data", "EEB313POP500.1.csv"))
+df3 <- read_csv(here("EEB313Final", "Data", "EEB313POP500.1.csv"))
+df4 <- read_csv(here("EEB313Final", "Data", "EEB313POP500.1.csv"))
   df500 <- rbind(df1, df2, df3, df4) %>% 
   mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
-df1 <- read_csv(here("Data", "EEB313POP1000.1.csv"))
-df2 <- read_csv(here("Data", "EEB313POP1000.1.csv"))
-df3 <- read_csv(here("Data", "EEB313POP1000.1.csv"))
-df4 <- read_csv(here("Data", "EEB313POP1000.1.csv"))
+df1 <- read_csv(here("EEB313Final", "Data", "EEB313POP1000.1.csv"))
+df2 <- read_csv(here("EEB313Final", "Data", "EEB313POP1000.1.csv"))
+df3 <- read_csv(here("EEB313Final", "Data", "EEB313POP1000.1.csv"))
+df4 <- read_csv(here("EEB313Final", "Data", "EEB313POP1000.1.csv"))
   df1000 <- rbind(df1, df2, df3, df4) %>% 
   mutate(distance = (a - 0.1)^2 + (b - 0.2)^2 + (c - 0.3)^2 + (gamma - 0.01)^2 + (mu - 0.05)^2)
   
@@ -59,13 +57,15 @@ summary(dfFull)
 
 
 ```{r}
-ggplot(dfFull, aes(x = as.factor(b))) +
+subset(dfFull, dfFull$b != 0.2) %>% 
+ggplot(aes(x = as.factor(b))) +
   geom_bar(fill = "red") +
   ylab("Count") +
   xlab("b")
 ```
 ```{r}
-ggplot(dfFull, aes(x = as.factor(c))) +
+subset(dfFull, dfFull$c != 0.3) %>% 
+ggplot(aes(x = as.factor(c))) +
   geom_bar(fill = "blue") +
   ylab("Count") +
   xlab("c")
@@ -73,13 +73,16 @@ ggplot(dfFull, aes(x = as.factor(c))) +
 
 
 ```{r}
-df1 <- df1 %>% 
-  mutate(distance = (a - 0.55)^2 + (b - 0.405)^2 + (c - 0.365)^2 + (gamma - 0.0275)^2 + (mu - 0.19)^2)
+subset(dfFull, dfFull$b != 0.2 | dfFull$c != 0.3)$distance %>% 
+  mean()
 
-df2 <- df2 %>% 
-  mutate(distance = (a - 0.7)^2 + (b - 0.2)^2 + (c - 0.6)^2 + (gamma - 0.04)^2 + (mu - 0.25)^2)
-
-df3 <- df3 %>% 
-  mutate(distance = (a - 0.5)^2 + (b - 0.4)^2 + (c - 0.3)^2 + (gamma - 0.025)^2 + (mu - 0.1)^2)
+subset(dfFull, dfFull$b != 0.2 | dfFull$c != 0.3)$distance %>% 
+  sd()
 ```
+
+
+
+
+
+
 
